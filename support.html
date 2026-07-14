@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>爱己自由 · 技术支持 / Love Myself Live Free · Support</title>
+    <style>
+        /* ===== 全局重置 & 基础 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f9f6ff;
+            color: #2d1b3d;
+            line-height: 1.7;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 720px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 32px;
+            box-shadow: 0 12px 48px rgba(123, 94, 167, 0.12), 0 4px 16px rgba(123, 94, 167, 0.06);
+            padding: 40px 36px 32px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 28px 18px 20px;
+                border-radius: 24px;
+            }
+        }
+
+        /* ===== 头部 ===== */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(123, 94, 167, 0.15);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon {
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #7B5EA7, #A78BCC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-name-en {
+            font-weight: 400;
+            font-size: 15px;
+            color: #7B5EA7;
+            -webkit-text-fill-color: #7B5EA7;
+            background: none;
+            margin-left: 4px;
+        }
+
+        /* ===== 语言切换 ===== */
+        .lang-toggle {
+            display: flex;
+            gap: 6px;
+            background: #f0ebf8;
+            padding: 4px;
+            border-radius: 40px;
+            border: 1px solid rgba(123, 94, 167, 0.15);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b4f8a;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+        }
+
+        .lang-btn:hover {
+            color: #4a2d66;
+            background: rgba(123, 94, 167, 0.08);
+        }
+
+        .lang-btn.active {
+            background: #7B5EA7;
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(123, 94, 167, 0.25);
+        }
+
+        .lang-btn.active:hover {
+            background: #6a4d92;
+            color: #fff;
+        }
+
+        /* ===== 内容面板 ===== */
+        .policy-content {
+            display: block;
+            transition: opacity 0.25s ease;
+        }
+
+        .policy-content.hidden {
+            display: none;
+        }
+
+        /* ===== 标题 ===== */
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d1b3d;
+            margin-bottom: 6px;
+        }
+
+        .page-title-en {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2d1b3d;
+            margin-bottom: 6px;
+        }
+
+        .sub-heading {
+            font-size: 16px;
+            color: #7f6b96;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(123, 94, 167, 0.10);
+        }
+
+        /* ===== 正文 ===== */
+        .body-text {
+            font-size: 16px;
+            color: #3d2b50;
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: #f5f0ff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin: 20px 0 16px;
+            text-align: center;
+            border-left: 4px solid #7B5EA7;
+        }
+
+        .contact-card a {
+            color: #7B5EA7;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 20px;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .response-time {
+            font-size: 14px;
+            color: #8f7aa6;
+            margin-top: 6px;
+        }
+
+        .link-back {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 10px 24px;
+            background: #7B5EA7;
+            color: #fff;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .link-back:hover {
+            background: #6a4d92;
+        }
+
+        .footer-note {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(123, 94, 167, 0.10);
+            font-size: 14px;
+            color: #7f6b96;
+            text-align: center;
+        }
+
+        .footer-note a {
+            color: #7B5EA7;
+            text-decoration: none;
+        }
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 500px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+            }
+            .brand {
+                justify-content: center;
+            }
+            .lang-toggle {
+                align-self: center;
+            }
+            .page-title {
+                font-size: 22px;
+            }
+            .page-title-en {
+                font-size: 20px;
+            }
+            .contact-card a {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== 头部 ===== -->
+        <header class="header">
+            <div class="brand">
+                <span class="brand-icon">🌸</span>
+                <span class="brand-name">
+                    爱己自由
+                    <span class="brand-name-en">Love Myself Live Free</span>
+                </span>
+            </div>
+            <div class="lang-toggle" role="tablist" aria-label="语言切换">
+                <button class="lang-btn active" data-lang="zh" role="tab" aria-selected="true" aria-controls="panel-zh" id="tab-zh">中文</button>
+                <button class="lang-btn" data-lang="en" role="tab" aria-selected="false" aria-controls="panel-en" id="tab-en">English</button>
+            </div>
+        </header>
+
+        <!-- ===== 中文内容 ===== -->
+        <div class="policy-content" id="panel-zh" role="tabpanel" aria-labelledby="tab-zh" lang="zh-CN">
+            <h1 class="page-title">技术支持</h1>
+            <div class="sub-heading">爱己自由 · 心灵疗愈应用</div>
+
+            <p class="body-text">如果你在使用过程中遇到任何问题、发现 Bug，或者有任何建议反馈，欢迎随时联系我们。我们会认真对待每一条消息，并尽力为你提供帮助。</p>
+
+            <div class="contact-card">
+                <div style="font-size:20px; margin-bottom:4px;">📧</div>
+                <a href="mailto:modefang_2023@qq.com">modefang_2023@qq.com</a>
+                <div class="response-time">我们会在 24 小时内回复你</div>
+            </div>
+
+            <p style="font-size:14px; color:#7f6b96; margin-top: 8px;">你也可以通过 App 内反馈功能联系我们，或访问我们的隐私政策了解更多。</p>
+
+            <a href="privacy.html" class="link-back">📄 查看隐私政策</a>
+
+            <div class="footer-note">
+                <span>Copyright © 2026 modefang_2023. All rights reserved.</span>
+            </div>
+        </div>
+
+        <!-- ===== 英文内容 ===== -->
+        <div class="policy-content hidden" id="panel-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
+            <h1 class="page-title-en">Technical Support</h1>
+            <div class="sub-heading">Love Myself Live Free · Mental Healing App</div>
+
+            <p class="body-text">If you encounter any issues, find bugs, or have suggestions, please don't hesitate to reach out. We take every message seriously and will do our best to assist you.</p>
+
+            <div class="contact-card">
+                <div style="font-size:20px; margin-bottom:4px;">📧</div>
+                <a href="mailto:modefang_2023@qq.com">modefang_2023@qq.com</a>
+                <div class="response-time">We will reply within 24 hours</div>
+            </div>
+
+            <p style="font-size:14px; color:#7f6b96; margin-top: 8px;">You can also contact us via the in-app feedback feature, or visit our Privacy Policy for more details.</p>
+
+            <a href="privacy.html" class="link-back">📄 View Privacy Policy</a>
+
+            <div class="footer-note">
+                <span>Copyright © 2026 modefang_2023. All rights reserved.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== JavaScript 语言切换 ===== -->
+    <script>
+        (function() {
+            const tabs = document.querySelectorAll('.lang-btn');
+            const panels = {
+                zh: document.getElementById('panel-zh'),
+                en: document.getElementById('panel-en')
+            };
+
+            function setLanguage(lang) {
+                tabs.forEach(btn => {
+                    const isActive = btn.dataset.lang === lang;
+                    btn.classList.toggle('active', isActive);
+                    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+                Object.keys(panels).forEach(key => {
+                    panels[key].classList.toggle('hidden', key !== lang);
+                });
+                if (history.pushState) {
+                    history.pushState(null, '', '#' + lang);
+                }
+            }
+
+            tabs.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setLanguage(this.dataset.lang);
+                });
+            });
+
+            function getLangFromHash() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash === 'en' || hash === 'zh') return hash;
+                return null;
+            }
+
+            function getBrowserLang() {
+                const navLang = navigator.language || navigator.languages?.[0] || 'zh';
+                return navLang.startsWith('en') ? 'en' : 'zh';
+            }
+
+            const initialLang = getLangFromHash() || getBrowserLang();
+            setLanguage(initialLang);
+
+            window.addEventListener('hashchange', function() {
+                const lang = getLangFromHash();
+                if (lang) setLanguage(lang);
+            });
+        })();
+    </script>
+
+</body>
+</html>
